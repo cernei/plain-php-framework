@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . './bootstrap.php';
+require_once __DIR__ . '/bootstrap.php';
 
-$config = require_once __DIR__ . 'app/config/db.php';
+$config = require_once __DIR__ . '/app/config/db.php';
 
 $conn = new mysqli($config['host'], $config['username'], $config['password'] , $config['dbname']);
 if ($conn) {
@@ -19,12 +19,12 @@ if ($conn) {
 
         $query = $query . $line;
         if ($endWith == ';') {
-            mysqli_query($conn, $query) or die('Problem in executing the SQL query ' . $query );
+            mysqli_query($conn, $query) or die('Problem in executing the SQL query ' . $query .  "\r\n");
             $query = '';
         }
     }
-    echo 'SQL file imported successfully';
+    echo 'SQL file imported successfully' . "\r\n";
 } else {
-    echo 'check db credentials in app/config/db';
+    echo 'check db credentials in app/config/db' . "\r\n";
 }
 ?>

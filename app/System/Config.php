@@ -4,7 +4,7 @@ namespace App\System;
 
 class Config
 {
-	protected $configs;
+    protected $configs;
 
     public function get($name)
     {
@@ -17,10 +17,10 @@ class Config
         } else {
             return $this->configs[$name];
         }
-	}
+    }
 
     protected function load($name)
     {
-        $this->configs[$name] =  $this->configs[$name] ?? require_once ('../app/config/'. $name. '.php');
+        $this->configs[$name] = $this->configs[$name] ?? require_once('../app/config/' . $name . '.php');
     }
 }

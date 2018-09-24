@@ -1,4 +1,5 @@
 <?php
+
 namespace App\System\Kernel;
 
 abstract class Facade

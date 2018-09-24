@@ -8,16 +8,18 @@
             </tr>
             <?php foreach ($items as $item): ?>
 
-                    <tr>
-                        <?php if ($item->vacancy): ?>
-                            <td><a href="<?=href('vacancies.show', $item->vacancy_id )?>"><?=htmlspecialchars($item->vacancy->title)?></a></td>
-                            <td>$<?=$item->vacancy->salary?></td>
-                        <?php else: ?>
-                            <td>deleted</td>
-                            <td>---</td>
-                        <?php endif; ?>
-                        <td><?=$item->candidate->email?></td>
-                    </tr>
+                <tr>
+                    <?php if ($item->vacancy): ?>
+                        <td>
+                            <a href="<?= href('vacancies.show', $item->vacancy_id) ?>"><?= htmlspecialchars($item->vacancy->title) ?></a>
+                        </td>
+                        <td>$<?= $item->vacancy->salary ?></td>
+                    <?php else: ?>
+                        <td>deleted</td>
+                        <td>---</td>
+                    <?php endif; ?>
+                    <td><?= $item->candidate->email ?></td>
+                </tr>
 
             <?php endforeach; ?>
         </table>

@@ -1,24 +1,25 @@
 <?php
+
 namespace App\Controllers;
 
-use App\Models\Vacancy;
 use App\Models\Reply;
+use App\Models\Vacancy;
 use \Auth;
 
 class VacanciesController
 {
-	
-	function index()
-	{
-	    $id = Auth::getUser()->id;
-	    $items = Vacancy::where(['user_id' => $id]);
-        return render('vacancies/index', ['title' => 'My vacancies', 'items' => $items]);
-	}
 
-	function create()
-	{
+    function index()
+    {
+        $id = Auth::getUser()->id;
+        $items = Vacancy::where(['user_id' => $id]);
+        return render('vacancies/index', ['title' => 'My vacancies', 'items' => $items]);
+    }
+
+    function create()
+    {
         return render('vacancies/create');
-	}
+    }
 
     function show($id)
     {
@@ -27,13 +28,13 @@ class VacanciesController
         $renderVars = ['title' => $vacancy->title, 'item' => $vacancy];
         if (Auth::check()) {
             $user = Auth::getUser();
-            if ($user->type==1) {
-                $apply = Reply::where(['candidate_id' => $user->id, 'vacancy_id' => $vacancy->id ]);
+            if ($user->type == 1) {
+                $apply = Reply::where(['candidate_id' => $user->id, 'vacancy_id' => $vacancy->id]);
                 if ($apply) $renderVars['apply'] = $apply;
             }
         }
 
-        return render('vacancies/show', $renderVars );
+        return render('vacancies/show', $renderVars);
     }
 
     function store()

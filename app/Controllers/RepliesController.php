@@ -1,23 +1,23 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\Vacancy;
 use App\Models\Reply;
+use App\Models\Vacancy;
 use \Auth;
 
 class RepliesController
 {
-	
-	function index()
-	{
-	    $id = Auth::getUser()->id;
+
+    function index()
+    {
+        $id = Auth::getUser()->id;
         $replies = Reply::where(['company_id' => $id]);
 
         $replies = Reply::oneToOne('candidate', $replies);
         $replies = Reply::oneToOne('vacancy', $replies);
 
         return render('replies', ['title' => 'Replies', 'items' => $replies]);
-	}
+    }
 
 
     function store($id)

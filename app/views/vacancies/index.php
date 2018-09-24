@@ -1,4 +1,4 @@
-<a href="<?=href('vacancies.create')?>" class="btn btn-success my-2">Create</a>
+<a href="<?= href('vacancies.create') ?>" class="btn btn-success my-2">Create</a>
 
 <?php if ($items): ?>
     <div class="table-responsive">
@@ -10,11 +10,12 @@
             </tr>
             <?php foreach ($items as $item): ?>
                 <tr>
-                    <td><a href="<?=href('vacancies.show', $item->id )?>"><?=$item->title?></a></td>
-                    <td>$<?=$item->salary?></td>
+                    <td><a href="<?= href('vacancies.show', $item->id) ?>"><?= $item->title ?></a></td>
+                    <td>$<?= $item->salary ?></td>
                     <td>
-                        <a href="<?=href('vacancies.edit', $item->id )?>" class="btn btn-info btn-sm ">Edit</a>
-                        <input type="button" class="btn btn-danger btn-sm" value="Delete" onClick="javascript: deleteItem('<?=href('vacancies.destroy', $item->id )?>')">
+                        <a href="<?= href('vacancies.edit', $item->id) ?>" class="btn btn-info btn-sm ">Edit</a>
+                        <input type="button" class="btn btn-danger btn-sm" value="Delete"
+                               onClick="javascript: deleteItem('<?= href('vacancies.destroy', $item->id) ?>')">
 
                     </td>
                 </tr>

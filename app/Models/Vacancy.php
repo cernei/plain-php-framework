@@ -4,7 +4,8 @@ namespace App\Models;
 
 use App\System\Model;
 
-class Vacancy extends Model {
+class Vacancy extends Model
+{
 
-	protected static $table = 'vacancies';
+    protected static $table = 'vacancies';
 }

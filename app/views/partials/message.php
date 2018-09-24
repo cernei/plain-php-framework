@@ -1,5 +1,5 @@
 <?php if (isset($message)): ?>
     <div class="alert alert-info" role="alert">
-        <?=$message?>
+        <?= $message ?>
     </div>
-<?php endif;?>
+<?php endif; ?>

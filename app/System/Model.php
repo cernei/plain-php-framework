@@ -1,4 +1,5 @@
 <?php
+
 namespace App\System;
 
 use \PDO;
@@ -64,7 +65,7 @@ abstract class Model
     public static function insert($set)
     {
         $db = Db::getInstance();
-        $query = 'INSERT INTO ' . static::$table . ' (' . implode(',', array_keys($set)) . ') VALUES (:' . implode(', :', array_keys($set)) .')';
+        $query = 'INSERT INTO ' . static::$table . ' (' . implode(',', array_keys($set)) . ') VALUES (:' . implode(', :', array_keys($set)) . ')';
 
         $req = $db->prepare($query);
         $req->execute($set);
@@ -73,7 +74,7 @@ abstract class Model
     public static function update($set, $constraint)
     {
         $db = Db::getInstance();
-        $query = 'UPDATE ' . static::$table  . ' SET ' . static::_buildSet('', $set,', ') . static::_buildSet('WHERE', $constraint);
+        $query = 'UPDATE ' . static::$table . ' SET ' . static::_buildSet('', $set, ', ') . static::_buildSet('WHERE', $constraint);
 
         $req = $db->prepare($query);
         $req->execute(array_merge($set, $constraint));

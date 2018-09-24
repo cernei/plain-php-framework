@@ -14,6 +14,7 @@ Used design patterns:
 ```
 git clone https://github.com/cernei/plain-php-framework.git
 
+cd plain-php-framework
 composer install
 ```
 To create tables for the Demo App specify db credentials in **app/config/db.php** then run

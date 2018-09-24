@@ -2,8 +2,10 @@
     <?php foreach ($items as $item): ?>
         <div class="card my-2">
             <div class="card-body">
-                <h5 class="card-title"><a href="<?=href('vacancies.show', $item->id)?>"><?=htmlspecialchars($item->title)?></a></h5>
-                <p class="card-text">Salary: $<?=$item->salary?></p>
+                <h5 class="card-title"><a
+                            href="<?= href('vacancies.show', $item->id) ?>"><?= htmlspecialchars($item->title) ?></a>
+                </h5>
+                <p class="card-text">Salary: $<?= $item->salary ?></p>
             </div>
         </div>
     <?php endforeach; ?>

@@ -2,7 +2,8 @@
 
 use App\System\Kernel\App;
 
-function app() {
+function app()
+{
     return App::getInstance();
 }
 
@@ -16,22 +17,23 @@ function renderView($name, $arr = [])
 {
     extract($arr);
     ob_start();
-    include ('../app/views/' . $name . '.php');
+    include('../app/views/' . $name . '.php');
     $content = ob_get_contents();
     ob_end_clean();
     return $content;
 }
 
-function href($routeName, $id = null) {
+function href($routeName, $id = null)
+{
 
-	$route = Router::getCompiled($routeName, $id);
+    $route = Router::getCompiled($routeName, $id);
 
-	return $route->url;
+    return $route->url;
 }
 
 function old($name, $item)
 {
-    return isset($_POST[$name]) ? htmlspecialchars($_POST[$name]): (isset($item->{$name}) ? htmlspecialchars($item->{$name}):  '');
+    return isset($_POST[$name]) ? htmlspecialchars($_POST[$name]) : (isset($item->{$name}) ? htmlspecialchars($item->{$name}) : '');
 }
 
 function validateFromInput($input)
@@ -49,16 +51,16 @@ function validateFromInput($input)
             }
         }
     }
-    return (object) ['isValid' => $isValid, 'error' => $errorMessage ?? ''];
+    return (object)['isValid' => $isValid, 'error' => $errorMessage ?? ''];
 }
 
 function form_open($routeName, $attr = [])
 {
-	$route = Router::getCompiled($routeName, $attr['id'] ?? null);
-    return '<form action="'. $route->url . '" method="POST"><input type="hidden" name="_method" value="' . $route->http . '">';
+    $route = Router::getCompiled($routeName, $attr['id'] ?? null);
+    return '<form action="' . $route->url . '" method="POST"><input type="hidden" name="_method" value="' . $route->http . '">';
 }
 
-function redirect( $routeName, $id = null)
+function redirect($routeName, $id = null)
 {
     $route = Router::getCompiled($routeName, $id);
 
@@ -72,9 +74,10 @@ function notFound()
     exit;
 }
 
-function keyBy($items, $key) {
+function keyBy($items, $key)
+{
     $arr = [];
-    foreach($items as $item) {
+    foreach ($items as $item) {
         $arr[$item->{$key}] = $item;
     }
     return $arr;

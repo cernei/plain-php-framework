@@ -1,6 +1,6 @@
 <?php
 
-require_once  __DIR__ . '/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 $activeRoute = Router::getActiveRoute();
 
@@ -12,8 +12,8 @@ if ($activeRoute) {
     } catch (Exception $e) {
         $response = $e->getMessage();
     }
-    
+
 } else {
-	notFound();
+    notFound();
 }
 echo $response;

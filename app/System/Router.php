@@ -6,7 +6,8 @@ use \Auth;
 use \Config;
 use \Request;
 
-class Router {
+class Router
+{
 
     protected $routes = [];
     protected $activeRoute;
@@ -26,7 +27,7 @@ class Router {
                 $item['group'] = $groupName;
                 $item['url'] = $routeItems[0];
                 list($item['class'], $item['method']) = explode('@', $routeItems[1]);
-                
+
                 $item['http'] = $routeItems[2]['http'] ?? 'GET';
 
                 $arr[$routeName] = $item;
@@ -39,22 +40,22 @@ class Router {
 
     function handle()
     {
-        foreach($this->routes as $route) {
-            $regex = str_replace('{:int}' , '([0-9]+)', $route['url']);
-            $regex = str_replace('/' , '\/', $regex);
-                
+        foreach ($this->routes as $route) {
+            $regex = str_replace('{:int}', '([0-9]+)', $route['url']);
+            $regex = str_replace('/', '\/', $regex);
+
             if (preg_match("/^{$regex}$/", Request::getUrl(), $matches) && Request::getMethod() == $route['http']) {
                 $route['param'] = $matches[1] ?? null;
-                $this->activeRoute = (object) $route;
+                $this->activeRoute = (object)$route;
                 break;
             }
         }
 
-         if (isset($route['group']) && $route['group'] == 'auth') {
-             if (!Auth::check()) {
-                 $this->activeRoute = (object) $this->routes[Config::get('general.fallback_route')];
-             }
-         }
+        if (isset($route['group']) && $route['group'] == 'auth') {
+            if (!Auth::check()) {
+                $this->activeRoute = (object)$this->routes[Config::get('general.fallback_route')];
+            }
+        }
 
     }
 
@@ -62,11 +63,11 @@ class Router {
     {
         $route = $this->routes[$name];
         $compiled = $route['url'];
-        if ($param && strpos($route['url'], '{:int}')!==false) {
+        if ($param && strpos($route['url'], '{:int}') !== false) {
             $compiled = str_replace('{:int}', $param, $route['url']);
         }
-        return (object) [
-            'url'  => Config::get('general.url_path_prefix') . $compiled,  // 'http://' . $this->request->getServerName() .  $compiled
+        return (object)[
+            'url' => Config::get('general.url_path_prefix') . $compiled,  // 'http://' . $this->request->getServerName() .  $compiled
             'http' => $route['http'],
         ];
     }

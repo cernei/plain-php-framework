@@ -11,27 +11,27 @@ Used design patterns:
 4. Lazy Loading
 
 #### Installation
-```
+``` bash
 git clone https://github.com/cernei/plain-php-framework.git
 
 cd plain-php-framework
 composer install
 ```
 To create tables for the Demo App specify db credentials in **app/config/db.php** then run
-```
+``` bash
 php ./install.php
 ```
 ## Features
 
 #### Using Facades
 Specify Facade class in **app/Facades** in order to use syntax:
-```
+``` php
 Config::get('routes')
 // instead of 
 app()->get('App\\System\\Config')->get('routes')
 ```
 Also don't forget to import facade where you use it.
-```
+``` php
 use \Config;
 
 //...
@@ -39,7 +39,7 @@ use \Config;
 Since they declared globally you are free to use them in view files.
 
 ##### Working with database
-```
+``` php
 User::where(['type' => 2]);
 User::where(['user_id' => 1, 'vacancy_id' => 3]); // AND junction
 User::orWhere(['user_id' => 1, 'user_id' => 2]); // OR junction
@@ -56,12 +56,12 @@ User::delete(['id' => '5']);
 
 ##### one-to-one relationship
 In order to resolve relationship use ```oneToOne``` helper to add related data 
-```
+``` php
 $replies = Reply::where(['company_id' => $id]);
 
 $replies = Reply::oneToOne('candidate', $replies);
 ```
-```
+``` php
 class Reply extends Model {
 
     //...
@@ -77,11 +77,11 @@ class Reply extends Model {
 
 ### Testing
 Run php unit within project root:
-```
+``` bash
 ./vendor/bin/phpunit
 ```
 To create a class in a container with special parameters use: 
-```php
+``` php
  app()->make('App\\System\\Request' , ['/', 'GET']);
 ```
 **make** method params are: _name class_ and _params_ for ```__construct``` method
